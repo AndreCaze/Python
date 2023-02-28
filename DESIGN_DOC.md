@@ -1,11 +1,11 @@
-# TITULO DEL DESIGN DOC
+# LAPSHOP
 Link: [Link a este design doc](#)
 
 Author(s): Miguel A. & Andre C.
 
 Status: [Draft, Ready for review, In Review, Reviewed]
 
-Ultima actualización: YYYY-MM-DD
+Ultima actualización: 2023-02-27
 
 ## Contenido
 - Goals
@@ -31,24 +31,26 @@ Una aplicacion web de venta de laptops nuevas, usadas, y reconstruidas.
 
 _Incluye contexto para las personas que no están familiarizadas con el proyecto._
 
-_Mantenlo corto, elabora en **Background, Overview y Detailed Design**_
-
-_Añade screenshots / mocks si lo ves necesario_
-
 ## Goals
 - Proveer un catalogo completo de laptops de diversos fabricantes.
+- Ofrecer una extensa lista de componentes que se pueden añadir a las computadoras.
 ## Non-Goals
 - Comprar laptops a terceros.
+- Vender componentes de computadora por separado
 
 ## Background
-_Cuál es el contexto de este proyecto?_
+Hace poco estuvimos viendo cuantas APIs hay dedicada a la venta de Laptops, y descubrimos que casi todas ofrecian laptops nuevas o proveian de un catalogo minusculo de componentes extras de laptops.
+
+Actualmente los usuarios de Laptops requerimos cada vez mas adaptar nuestros dispositivos a nuevas necesidades o situaciones donde los componentes que tiene no son suficientes o no permiten trabajar en ellas.
 
 _Incluye recursos, como otros design docs si es necesario_
 
 _No escribas acerca de tu diseño o requerimientos aquí_
 
 ## Overview
-_Overview a alto nivel de tu propuesta_
+Necesitamos un API que contenga todas las marcas de Laptops y todos los componentes que se le pueden agregar a una.
+
+Cada Laptop tendra una id, en la cual se podra consultar su existencia o disponibilidad junto con cualquier componente que se le quiera añadir.
 
 _Esta sección debería ser entendible por nuevos miembros de tu equipo que no están relacionados al proyecto_
 
