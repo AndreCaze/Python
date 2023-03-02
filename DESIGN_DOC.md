@@ -27,21 +27,23 @@ Ultima actualización: 2023-02-27
 - [Otro link](#)
 
 ## Objetivo
-Una aplicacion web de venta de laptops nuevas, usadas, y reconstruidas.
+Una aplicacion web para facilitar el proceso de compra de laptops nuevas, usadas, y reconstruidas.
 
 _Incluye contexto para las personas que no están familiarizadas con el proyecto._
 
 ## Goals
 - Proveer un catalogo completo de laptops de diversos fabricantes.
-- Ofrecer una extensa lista de componentes que se pueden añadir a las computadoras.
+- Facilitar la comunicacion entre vendedores y clientes.
+- Ofrecer una extensa lista de componentes personalizables para cada laptop.
 ## Non-Goals
-- Comprar laptops a terceros.
-- Vender componentes de computadora por separado
+- Venta de laptops.
+- Incluir computadores de escritorio, celulares, tabletas u otros dispositivos diferentes a las laptops.
+- Venta de componentes por separado.
 
 ## Background
 Hace poco estuvimos viendo cuantas APIs hay dedicada a la venta de Laptops, y descubrimos que casi todas ofrecian laptops nuevas o proveian de un catalogo minusculo de componentes extras de laptops.
 
-Actualmente los usuarios de Laptops requerimos cada vez mas adaptar nuestros dispositivos a nuevas necesidades o situaciones donde los componentes que tiene no son suficientes o no permiten trabajar en ellas.
+Actualmente los usuarios de Laptops requieren dispositivos que se adapten a sus necesidades o situaciones donde los componentes que tienen no son suficientes para el trabajo que desean desempeñar
 
 _Incluye recursos, como otros design docs si es necesario_
 

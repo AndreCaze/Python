@@ -1,18 +1,18 @@
 # menu
-aqui van las instrucciones para ejecutar este proyecto
+Instrucciones para ejecutar este proyecto
 
-tener instalado python 3.10.12.12.13.343
+Instalar python 3.10.12.12.13.343
 
-a continuacion instalar los archivos en requerimientos.txt
+A continuacion instalar los archivos en requirements.txt
 
 > pip install -r requerimientos.txt
 > pip install mysql -connector
 
 de preferencia esto debe estar en un ENV
 
-python -m venv venv
+> python -m venv venv
 
-el proyecto esta realizado en flask, se debe ejecutar con el siguiente comando:
+El proyecto esta realizado en flask y se debe ejecutar con el siguiente comando:
 
 > flask run app
 
