@@ -33,10 +33,9 @@ _Incluye contexto para las personas que no están familiarizadas con el proyecto
 
 ## Goals
 - Proveer un catalogo completo de laptops de diversos fabricantes.
-- Facilitar la comunicacion entre vendedores y clientes.
+- Facilitar el proceso de compra de laptops.
 - Ofrecer una extensa lista de componentes personalizables para cada laptop.
 ## Non-Goals
-- Venta de laptops.
 - Incluir computadores de escritorio, celulares, tabletas u otros dispositivos diferentes a las laptops.
 - Venta de componentes por separado.
 
