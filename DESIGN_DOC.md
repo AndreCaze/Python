@@ -1,4 +1,4 @@
-# LAPSHOP
+# LAPSHOP Prime
 Link: [Link a este design doc](#)
 
 Author(s): Miguel A. & Andre C.
