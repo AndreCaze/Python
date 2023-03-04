@@ -55,14 +55,23 @@ Cada Laptop tendra una id, en la cual se podra consultar su existencia o disponi
 
 Los End Points tendran el siguiente formato:
 1.-/v0.1/LapShopP/laptops/{item-id}
+
 2.-/v0.1/LapShopP/laptops/{item-id}/prices/{emp-id}
+
 3.-/v0.1/LapShopP/laptops/{item-id}/components
+
 4.-/v0.1/LapShopP/laptops/{item-id}/components/{components-id}
+
 5.-/v0.1/LapShopP/laptops?manufacturer=INTEL&condition=new
+
 6.-/v0.1/LapShopP/laptops/{item-id}/prices
+
 7.-/v0.1/LapShopP/laptops/types
+
 8.-/v0.1/LapShopP/laptops/{item-id}/reviews
+
 9.-/v0.1/LapShopP/about
+
 10.-/v0.1/LapShopP/about/terms-of-use
 
 _Esta sección debería ser entendible por nuevos miembros de tu equipo que no están relacionados al proyecto_
