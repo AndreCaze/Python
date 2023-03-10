@@ -1,5 +1,4 @@
 # LAPSHOP Prime
-Link: [Link a este design doc](#)
 
 Author(s): Miguel A. & Andre C.
 
@@ -23,8 +22,7 @@ Ultima actualización: 2023-02-27
 - Métricas
 
 ## Links
-- [Un link](#)
-- [Otro link](#)
+- [Al Repositorio](https://github.com/AndreCaze/Python)
 
 ## Objetivo
 Una aplicacion web para facilitar el proceso de compra de laptops nuevas, usadas, y reconstruidas.
