@@ -88,12 +88,6 @@ _Frontend…_
 ### Backend
 _Backend…_
 
-## Solution 2
-### Frontend
-_Frontend…_
-### Backend
-_Backend…_
-
 ## Consideraciones
 _Preocupaciones / trade-offs / tech debt_
 
