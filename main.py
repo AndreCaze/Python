@@ -39,10 +39,12 @@ def sqltest():
 
 	cursor = conexion.cursor()
 	cursor.execute("SELECT * FROM Laptop")
-
+	headers=[x[0] for x in cursor.description]
 	resultados = cursor.fetchall()
-	return resultados
-
+	json_data=[]
+	for result in resultados:
+		json_data.append(dict(zip(headers,result)))
+	return jsonify(json_data)
 
 if __name__=='__main__':
 	app.run()
