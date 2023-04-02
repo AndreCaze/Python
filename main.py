@@ -3,6 +3,7 @@ from flask import jsonify
 #from urllib.com import urlopen
 import mysql.connector
 import json
+import hashlib
 
 app = Flask(__name__)
 
@@ -14,6 +15,11 @@ def main():
 @app.route("/laptops")
 def laptops():
 	return "<h1>Catalogo de laptops</h1>"
+
+
+@app.route("/bye/<name>")
+def adios(name):
+	return "<center><h1>Bye Bye {name}</h1></center>"
 
 
 @app.route("/about/terms-of-use")
