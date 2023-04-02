@@ -49,16 +49,17 @@ Necesitamos un API que contenga todas las marcas de Laptops y todos los componen
 Cada Laptop tendra una id, en la cual se podra consultar su existencia o disponibilidad junto con cualquier componente que se le quiera añadir.
 
 Los End Points tendran el siguiente formato:
-- 1.-/v0.1/LapShopP/laptops/{item-id}
-- 2.-/v0.1/LapShopP/laptops/{item-id}/prices/{emp-id}
-- 3.-/v0.1/LapShopP/laptops/{item-id}/components
-- 4.-/v0.1/LapShopP/laptops/{item-id}/components/{components-id}
-- 5.-/v0.1/LapShopP/laptops?manufacturer=INTEL&condition=new
-- 6.-/v0.1/LapShopP/laptops/{item-id}/prices
-- 7.-/v0.1/LapShopP/laptops/types
-- 8.-/v0.1/LapShopP/laptops/{item-id}/reviews
-- 9.-/v0.1/LapShopP/about
-- 10.-/v0.1/LapShopP/about/terms-of-use
+- 1.-/v0.1/LapShopP/laptops
+- 2.-/v0.1/LapShopP/laptops/all
+- 3.-/v0.1/LapShopP/manufacturer/all
+- 4.-/v0.1/LapShopP/processor/all
+- 5.-/v0.1/LapShopP/graphics/all
+- 6.-/v0.1/LapShopP/series/all
+- 7.-/v0.1/LapShopP/ram/all
+- 8.-/v0.1/LapShopP/screens/all
+- 9.-/v0.1/LapShopP/storages/all
+- 10.-/v0.1/LapShopP/about
+- 11.-/v0.1/LapShopP/about/terms-of-use
 
 _Esta sección debería ser entendible por nuevos miembros de tu equipo que no están relacionados al proyecto_
 
