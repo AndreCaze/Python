@@ -1,10 +1,14 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
-from flask_jwt_extended import jwt_required, JWTManager, get_jwt_identity, create_access_token, get_jwt
+""" Programa principal con login y endpoints """
 import hashlib
-import mysql.connector
+import json
 from datetime import datetime, timedelta
 from functools import wraps
 import platform
+from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask_jwt_extended import jwt_required, JWTManager, get_jwt_identity
+from flask_jwt_extended import create_access_token, get_jwt
+import mysql.connector
+
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'super' #CAMBIAR ESTO!!!
@@ -12,7 +16,7 @@ app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes = 5)
 
 jwt = JWTManager(app)
 
-# La base de datos que se uso fue la de MySQL WorkBench, 
+# La base de datos que se uso fue la de MySQL WorkBench,
 # para facilitar la comprobacion.
 connection_data = {
     'user': 'root',
@@ -22,8 +26,9 @@ connection_data = {
 }
 
 # Funcion para crear un nuevo registro (log)
-def log_access(f):
-    @wraps(f)
+def log_access(funct):
+    """ Funcion para el login """
+    @wraps(funct)
     def create_log(*args, **kwargs):
         # Acceder al token
         token = get_jwt_identity()
@@ -34,21 +39,23 @@ def log_access(f):
         reg_date = datetime.strptime(claims["register_date"],'%Y-%m-%d %H:%M:%S')
         connection = mysql.connector.connect(**connection_data)
         mycursor = connection.cursor()
-        new_log_sql = "INSERT INTO endpoint_logs (user_id, endpoint, start_time, register_date) VALUES (%s, %s, %s, %s)" #Consulta para agregar el nuevo registro
+        new_log_sql = "INSERT INTO endpoint_logs (user_id, endpoint, start_time, register_date) \
+        VALUES (%s, %s, %s, %s)" #Consulta para agregar el nuevo registro
         val = (user_id, endpoint, timestamp, reg_date)
         mycursor.execute(new_log_sql, val) #Ejecutar
         connection.commit() #Guardar cambios
         connection.close() #Cerrar conexion
-        return f(*args, **kwargs) #Devolver la funcion original
+        return funct(*args, **kwargs) #Devolver la funcion original
     return create_log
 
 @app.route("/")
 def main():
+    """ Endpoint Principal """
     return "<center><h1>LAPSHOP PRIME</h1></center>"
 
-#endpoint de registro de usuario
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+    """ Endpoint de Registro de Usuario """
     if request.method == 'POST':
         #Si la peticion es POST, obtener los datos del formulario
         username = request.form['username']
@@ -79,9 +86,9 @@ def signup():
     #Si la solicitud es GET, simplemente renderizar el formulario HTML
     return render_template('register.html')
 
-#endpoint para inicio de sesion
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    """ Endpoint de Inicio de Sesion"""
     if request.method == 'POST':
         #Si la peticion es POST, obtener los datos de inicio de sesion
         username = request.form['username']
@@ -103,13 +110,13 @@ def login():
 
         time = datetime.now()
         expire = time + timedelta(minutes=5)
-        additional_claims = {"user": user[1], "expires_at": expire, "register_date": user[3].strftime('%Y-%m-%d %H:%M:%S')}
+        additional_claims = {"user": user[1], "expires_at": expire,\
+        "register_date": user[3].strftime('%Y-%m-%d %H:%M:%S')}
         #Crear token de sesión
         access_token = create_access_token(identity=user[0], additional_claims=additional_claims)
-        
-
         #Guardar la sesion en la base de datos
-        new_session_sql = "INSERT INTO sessions (user_id, token, browser, os, created_at, expires_at) VALUES (%s, %s, %s,%s,%s,%s)"
+        new_session_sql = "INSERT INTO sessions (user_id,token,browser,os,created_at,expires_at)\
+        VALUES (%s, %s, %s,%s,%s,%s)"
         val = (user[0], access_token, request.user_agent.string, platform.system(), time, expire)
         mycursor.execute(new_session_sql, val)
         connection.commit()
@@ -125,19 +132,21 @@ def login():
         }), 200
     return render_template('login.html')
 
-
 @app.route("/laptops")
 def laptops():
+    """ Endpoint de Catalogo"""
     return "<h1>Catalogo de laptops</h1>"
 
 
 @app.route("/about/terms-of-use")
 def terms():
+    """ Endpoint de Terminos y Usos"""
     return "<h1>Pagina en Mantenimiento</h1>"
 
 @app.route("/about")
 def about():
-    with open("about.json") as archivo:
+    """ Endpoint de Acerca de"""
+    with open("about.json", mode="r", encoding="utf-8") as archivo:
         datos = json.load(archivo)
     return datos
 
@@ -147,6 +156,7 @@ def about():
 @jwt_required()
 @log_access
 def example():
+    """ Endpoint de Consulta tabla Laptops"""
     connection = mysql.connector.connect(**connection_data)
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM laptops")
@@ -164,6 +174,7 @@ def example():
 @jwt_required()
 @log_access
 def manufacturer():
+    """ Endpoint de Consulta tabla Manufacturer"""
     connection = mysql.connector.connect(**connection_data)
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM manufacturer")
@@ -181,6 +192,7 @@ def manufacturer():
 @jwt_required()
 @log_access
 def processor():
+    """ Endpoint de Consulta tabla Processor"""
     connection = mysql.connector.connect(**connection_data)
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM processor")
@@ -198,6 +210,7 @@ def processor():
 @jwt_required()
 @log_access
 def graphics():
+    """ Endpoint de Consulta tabla Graphics"""
     connection = mysql.connector.connect(**connection_data)
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM graphics_card")
@@ -215,6 +228,7 @@ def graphics():
 @jwt_required()
 @log_access
 def series():
+    """ Endpoint de Consulta tabla Series"""
     connection = mysql.connector.connect(**connection_data)
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM series")
@@ -232,6 +246,7 @@ def series():
 @jwt_required()
 @log_access
 def ram():
+    """ Endpoint de Consulta tabla Ram_sticks"""
     connection = mysql.connector.connect(**connection_data)
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM ram_sticks")
@@ -249,6 +264,7 @@ def ram():
 @jwt_required()
 @log_access
 def screens():
+    """ Endpoint de Consulta tabla Screens"""
     connection = mysql.connector.connect(**connection_data)
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM screens")
@@ -266,6 +282,7 @@ def screens():
 @jwt_required()
 @log_access
 def storage():
+    """ Endpoint de Consulta tabla Storage"""
     connection = mysql.connector.connect(**connection_data)
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM storage_drives")
